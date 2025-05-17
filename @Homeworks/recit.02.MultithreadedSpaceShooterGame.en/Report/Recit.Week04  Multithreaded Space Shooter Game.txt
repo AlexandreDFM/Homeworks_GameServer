@@ -1,0 +1,514 @@
+Recit.Week04 : Multithreaded Space Shooter Game
+
+In the attached file, there is a C# game example that uses threading for a basic multithreaded space shooter. The game has a main thread for updating the player's movements and a separate thread for handling the enemy's movements and attack behavior.
+
+
+Step1 [5pt] After listening to the instructor's explanation, implement it exactly as in the attached file. Code Breakdown:
+	• Main Game Loop: The main game loop handles player input, moves the player, and fires the weapon. This loop also runs continuously until either the player or the enemy's health reaches
+zero.
+	• Enemy Thread: A separate thread handles the enemy's movement and attacks. The enemy moves randomly and attacks the player if they are within range.
+	• Synchronization: Both the main thread and the enemy thread share data (like positions and health). To prevent race conditions, there is a lock statement whenever shared data is accessed.
+
+Step2 [5pt] Answer the following questions briefly.
+
+	Q1: Why do we need a separate thread for the enemy behavior?
+	Q2: What would happen if we removed the lock (lockObject) statement?
+	Q3: What is the purpose of Thread.Sleep(100) in the main game loop?
+	Q4: Why do we use enemy Thread. Join() at the end of the game?
+
+Step3 [5pt] Currently there is a single enemy whose starting position is 30. Add one more enemy whose starting position is 0. 
+The newly added enemy need to move around with its own thread whose name is enemy Thread2.
+
+
+
+Submission Instruction:
+Submit answers at the LMS on Recit.Week04 post, by 10/4(Fri).
+Step1: No need to submit.
+Step2: Generate txt file having answers for the four questions. And submit the text file.
+Step3: You need to submit the source code file (.cs) only. If you have not solved the question, do not submit any. (no partial credits)
+
+
+Step 1
+
+
+
+Step 2
+
+	Q1 : We need a separate thread for the enemy behavior because …
+	Q2 : If we removed the lock(lockObject) statement it …
+	Q3 : The prupose of Thread.Sleep(100) in the main game loop is
+	Q4 : We use enemyThread.Join() at the end of the game for
+
+Step 3
+
+
+
+
+### Step 1: Implementing the Game as in the Attached File
+
+Here is the code breakdown and implementation as described:
+
+```csharp
+using System;
+using System.Threading;
+
+class SpaceShooterGame
+{
+    static bool isRunning = true;       // Game running status
+    static int playerPosition = 10;     // Player position
+    static int enemy1Position = 30;     // Enemy 1 position
+    static int enemy2Position = 0;      // Enemy 2 position
+    static int playerHealth = 100;      // Player health
+    static int enemy1Health = 100;      // Enemy 1 health
+    static int enemy2Health = 100;      // Enemy 2 health
+    static object lockObject = new object(); // Lock object for thread safety
+
+    static void Main(string[] args)
+    {
+        Console.WriteLine("Welcome to Space Shooter!");
+        Console.WriteLine("Press 'A' to move left, 'D' to move right, 'F' to fire. Press 'Q' to quit.");
+        Console.Write("Game starts within ");
+        for (int i = 3; i > 0; i--)
+        {
+            Console.Write(i + " ");
+            Thread.Sleep(500);
+        }
+        Console.WriteLine(" Go~~~!");
+
+        // Start enemy behavior threads
+        Thread enemyThread1 = new Thread(new ThreadStart(Enemy1Behavior));
+        Thread enemyThread2 = new Thread(new ThreadStart(Enemy2Behavior));
+        enemyThread1.Start();
+        enemyThread2.Start();
+
+        while (isRunning && playerHealth > 0 && (enemy1Health > 0 || enemy2Health > 0))
+        {
+            // Player controls
+            if (Console.KeyAvailable)
+            {
+                var key = Console.ReadKey(true).Key;
+                lock (lockObject)
+                {
+                    switch (key)
+                    {
+                        case ConsoleKey.A:
+                            MovePlayerLeft();
+                            break;
+                        case ConsoleKey.D:
+                            MovePlayerRight();
+                            break;
+                        case ConsoleKey.F:
+                            FireWeapon();
+                            break;
+                        case ConsoleKey.Q:
+                            isRunning = false;
+                            break;
+                    }
+                }
+            }
+
+            // Simulate game frame update
+            Thread.Sleep(100);
+            UpdateGame();
+        }
+
+        isRunning = false;
+        enemyThread1.Join();  // Ensure enemy 1 thread stops before ending game
+        enemyThread2.Join();  // Ensure enemy 2 thread stops before ending game
+        EndGame();
+    }
+
+    // Moves the player left
+    static void MovePlayerLeft()
+    {
+        if (playerPosition > 0)
+        {
+            playerPosition--;
+            Console.WriteLine(">>> Player moved left to position " + playerPosition);
+        }
+    }
+
+    // Moves the player right
+    static void MovePlayerRight()
+    {
+        if (playerPosition < 20)
+        {
+            playerPosition++;
+            Console.WriteLine(">>> Player moved right to position " + playerPosition);
+        }
+    }
+
+    // Fires player's weapon
+    static void FireWeapon()
+    {
+        Console.WriteLine("Player fired!");
+        if (Math.Abs(playerPosition - enemy1Position) < 5)
+        {
+            lock (lockObject)
+            {
+                enemy1Health -= 10;
+                Console.WriteLine("Hit! Enemy 1 health: " + enemy1Health);
+            }
+        }
+        else if (Math.Abs(playerPosition - enemy2Position) < 5)
+        {
+            lock (lockObject)
+            {
+                enemy2Health -= 10;
+                Console.WriteLine("Hit! Enemy 2 health: " + enemy2Health);
+            }
+        }
+        else
+        {
+            Console.WriteLine("Missed! Enemy is too far.");
+        }
+    }
+
+    // Enemy 1 behavior thread: Moves enemy 1 and attacks player
+    static void Enemy1Behavior()
+    {
+        Random random = new Random();
+        while (isRunning && enemy1Health > 0)
+        {
+            lock (lockObject)
+            {
+                // Random enemy movement
+                int moveDirection = random.Next(0, 3);
+                if (moveDirection == 0 && enemy1Position > 0)
+                {
+                    enemy1Position--;
+                }
+                else if (moveDirection == 1 && enemy1Position < 20)
+                {
+                    enemy1Position++;
+                }
+
+                Console.WriteLine("> Enemy 1 moved to position " + enemy1Position);
+
+                // Enemy attack if close to the player
+                if (Math.Abs(playerPosition - enemy1Position) < 5)
+                {
+                    playerHealth -= 10;
+                    Console.WriteLine("Enemy 1 attacked! Player health: " + playerHealth);
+                }
+            }
+
+            Thread.Sleep(500); // Enemy action delay
+        }
+    }
+
+    // Enemy 2 behavior thread: Moves enemy 2 and attacks player
+    static void Enemy2Behavior()
+    {
+        Random random = new Random();
+        while (isRunning && enemy2Health > 0)
+        {
+            lock (lockObject)
+            {
+                // Random enemy movement
+                int moveDirection = random.Next(0, 3);
+                if (moveDirection == 0 && enemy2Position > 0)
+                {
+                    enemy2Position--;
+                }
+                else if (moveDirection == 1 && enemy2Position < 20)
+                {
+                    enemy2Position++;
+                }
+
+                Console.WriteLine("> Enemy 2 moved to position " + enemy2Position);
+
+                // Enemy attack if close to the player
+                if (Math.Abs(playerPosition - enemy2Position) < 5)
+                {
+                    playerHealth -= 10;
+                    Console.WriteLine("Enemy 2 attacked! Player health: " + playerHealth);
+                }
+            }
+
+            Thread.Sleep(500); // Enemy action delay
+        }
+    }
+
+    // Game update loop
+    static void UpdateGame()
+    {
+        Console.WriteLine("Player Health: " + playerHealth + " | Enemy 1 Health: " + enemy1Health + " | Enemy 2 Health: " + enemy2Health);
+    }
+
+    // End game logic
+    static void EndGame()
+    {
+        if (playerHealth <= 0)
+        {
+            Console.WriteLine("Game Over! You were defeated.");
+        }
+        else if (enemy1Health <= 0 && enemy2Health <= 0)
+        {
+            Console.WriteLine("Victory! You defeated both enemies.");
+        }
+        else
+        {
+            Console.WriteLine("Game exited.");
+        }
+    }
+}
+```
+
+### Step 2: Answer the Questions
+
+**Q1: Why do we need a separate thread for the enemy behavior?**
+
+A separate thread is needed for the enemy behavior to allow the player and enemy to act independently and simultaneously. This ensures that the enemy continues moving and attacking while the main thread is handling player input and updating the game state. Without separate threads, the game would have to wait for player actions before updating the enemy behavior, making it less dynamic.
+
+---
+
+**Q2: What would happen if we removed the `lock (lockObject)` statement?**
+
+Without the lock statement, both the main thread and the enemy threads could attempt to access or modify shared data (like positions and health) simultaneously, which could lead to race conditions. This could cause unpredictable behavior, such as the player’s health or enemy's position being updated incorrectly.
+
+---
+
+**Q3: What is the purpose of `Thread.Sleep(100)` in the main game loop?**
+
+`Thread.Sleep(100)` introduces a brief pause in the main loop, which simulates the passing of time between game updates. It prevents the CPU from being overwhelmed by continuously running the loop without a break and ensures that game updates and player input processing happen at a reasonable pace.
+
+---
+
+**Q4: Why do we use `enemyThread.Join()` at the end of the game?**
+
+`enemyThread.Join()` ensures that the main thread waits for the enemy thread to finish its execution before exiting the program. Without this, the main thread could finish and terminate the program while the enemy thread is still running, potentially leading to crashes or incomplete game logic.
+
+---
+
+### Step 3: Adding a Second Enemy
+
+In the code, I added a second enemy (`enemy2`) with its own thread (`enemyThread2`). This enemy starts at position 0 and behaves similarly to the first enemy, with its own movement and attack behavior in the `Enemy2Behavior` method.
+
+This concludes all the steps as per your request. Let me know if you'd like further assistance!
+
+
+
+
+
+
+
+
+
+Here is the code with the addition of the second enemy, `enemy2`, and its corresponding behavior:
+
+```csharp
+using System;
+using System.Threading;
+
+class SpaceShooterGame
+{
+    static bool isRunning = true;       // Game running status
+    static int playerPosition = 10;     // Player position
+    static int enemy1Position = 30;     // Enemy 1 position
+    static int enemy2Position = 0;      // Enemy 2 position
+    static int playerHealth = 100;      // Player health
+    static int enemy1Health = 100;      // Enemy 1 health
+    static int enemy2Health = 100;      // Enemy 2 health
+    static object lockObject = new object(); // Lock object for thread safety
+
+    static void Main(string[] args)
+    {
+        Console.WriteLine("Welcome to Space Shooter!");
+        Console.WriteLine("Press 'A' to move left, 'D' to move right, 'F' to fire. Press 'Q' to quit.");
+        Console.Write("Game starts within ");
+        for (int i = 3; i > 0; i--)
+        {
+            Console.Write(i + " ");
+            Thread.Sleep(500);
+        }
+        Console.WriteLine(" Go~~~!");
+
+        // Start enemy behavior threads
+        Thread enemyThread1 = new Thread(new ThreadStart(Enemy1Behavior));
+        Thread enemyThread2 = new Thread(new ThreadStart(Enemy2Behavior));
+        enemyThread1.Start();
+        enemyThread2.Start();
+
+        while (isRunning && playerHealth > 0 && (enemy1Health > 0 || enemy2Health > 0))
+        {
+            // Player controls
+            if (Console.KeyAvailable)
+            {
+                var key = Console.ReadKey(true).Key;
+                lock (lockObject)
+                {
+                    switch (key)
+                    {
+                        case ConsoleKey.A:
+                            MovePlayerLeft();
+                            break;
+                        case ConsoleKey.D:
+                            MovePlayerRight();
+                            break;
+                        case ConsoleKey.F:
+                            FireWeapon();
+                            break;
+                        case ConsoleKey.Q:
+                            isRunning = false;
+                            break;
+                    }
+                }
+            }
+
+            // Simulate game frame update
+            Thread.Sleep(100);
+            UpdateGame();
+        }
+
+        isRunning = false;
+        enemyThread1.Join();  // Ensure enemy 1 thread stops before ending game
+        enemyThread2.Join();  // Ensure enemy 2 thread stops before ending game
+        EndGame();
+    }
+
+    // Moves the player left
+    static void MovePlayerLeft()
+    {
+        if (playerPosition > 0)
+        {
+            playerPosition--;
+            Console.WriteLine(">>> Player moved left to position " + playerPosition);
+        }
+    }
+
+    // Moves the player right
+    static void MovePlayerRight()
+    {
+        if (playerPosition < 20)
+        {
+            playerPosition++;
+            Console.WriteLine(">>> Player moved right to position " + playerPosition);
+        }
+    }
+
+    // Fires player's weapon
+    static void FireWeapon()
+    {
+        Console.WriteLine("Player fired!");
+        if (Math.Abs(playerPosition - enemy1Position) < 5)
+        {
+            lock (lockObject)
+            {
+                enemy1Health -= 10;
+                Console.WriteLine("Hit! Enemy 1 health: " + enemy1Health);
+            }
+        }
+        else if (Math.Abs(playerPosition - enemy2Position) < 5)
+        {
+            lock (lockObject)
+            {
+                enemy2Health -= 10;
+                Console.WriteLine("Hit! Enemy 2 health: " + enemy2Health);
+            }
+        }
+        else
+        {
+            Console.WriteLine("Missed! Enemy is too far.");
+        }
+    }
+
+    // Enemy 1 behavior thread: Moves enemy 1 and attacks player
+    static void Enemy1Behavior()
+    {
+        Random random = new Random();
+        while (isRunning && enemy1Health > 0)
+        {
+            lock (lockObject)
+            {
+                // Random enemy movement
+                int moveDirection = random.Next(0, 3);
+                if (moveDirection == 0 && enemy1Position > 0)
+                {
+                    enemy1Position--;
+                }
+                else if (moveDirection == 1 && enemy1Position < 20)
+                {
+                    enemy1Position++;
+                }
+
+                Console.WriteLine("> Enemy 1 moved to position " + enemy1Position);
+
+                // Enemy attack if close to the player
+                if (Math.Abs(playerPosition - enemy1Position) < 5)
+                {
+                    playerHealth -= 10;
+                    Console.WriteLine("Enemy 1 attacked! Player health: " + playerHealth);
+                }
+            }
+
+            Thread.Sleep(500); // Enemy action delay
+        }
+    }
+
+    // Enemy 2 behavior thread: Moves enemy 2 and attacks player
+    static void Enemy2Behavior()
+    {
+        Random random = new Random();
+        while (isRunning && enemy2Health > 0)
+        {
+            lock (lockObject)
+            {
+                // Random enemy movement
+                int moveDirection = random.Next(0, 3);
+                if (moveDirection == 0 && enemy2Position > 0)
+                {
+                    enemy2Position--;
+                }
+                else if (moveDirection == 1 && enemy2Position < 20)
+                {
+                    enemy2Position++;
+                }
+
+                Console.WriteLine("> Enemy 2 moved to position " + enemy2Position);
+
+                // Enemy attack if close to the player
+                if (Math.Abs(playerPosition - enemy2Position) < 5)
+                {
+                    playerHealth -= 10;
+                    Console.WriteLine("Enemy 2 attacked! Player health: " + playerHealth);
+                }
+            }
+
+            Thread.Sleep(500); // Enemy action delay
+        }
+    }
+
+    // Game update loop
+    static void UpdateGame()
+    {
+        Console.WriteLine("Player Health: " + playerHealth + " | Enemy 1 Health: " + enemy1Health + " | Enemy 2 Health: " + enemy2Health);
+    }
+
+    // End game logic
+    static void EndGame()
+    {
+        if (playerHealth <= 0)
+        {
+            Console.WriteLine("Game Over! You were defeated.");
+        }
+        else if (enemy1Health <= 0 && enemy2Health <= 0)
+        {
+            Console.WriteLine("Victory! You defeated both enemies.");
+        }
+        else
+        {
+            Console.WriteLine("Game exited.");
+        }
+    }
+}
+```
+
+### Explanation of Changes:
+- I added the second enemy (`enemy2`) with a starting position of 0.
+- `Enemy2Behavior` is the new thread method for controlling the movement and attacks of the second enemy.
+- Both enemies now operate independently using separate threads (`enemyThread1` for `enemy1` and `enemyThread2` for `enemy2`).
+- The player's weapon can now hit either `enemy1` or `enemy2`, depending on their proximity.
+- The game checks if both enemies are defeated to declare victory.
+
+This should cover everything for **Step 3**. Let me know if you need any further modifications!
