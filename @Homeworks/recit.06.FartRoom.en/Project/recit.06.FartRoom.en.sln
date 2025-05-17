@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "recit.06.FartRoom.en_Server", "recit.06.FartRoom.en_Server\recit.06.FartRoom.en_Server.csproj", "{AD8EB425-9093-408D-968E-FEC135547362}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "recit.06.FartRoom.en_Client", "recit.06.FartRoom.en_Client\recit.06.FartRoom.en_Client.csproj", "{D62A5BD0-5E4E-4B0B-97E7-8BF47CB43E86}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AD8EB425-9093-408D-968E-FEC135547362}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD8EB425-9093-408D-968E-FEC135547362}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD8EB425-9093-408D-968E-FEC135547362}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD8EB425-9093-408D-968E-FEC135547362}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D62A5BD0-5E4E-4B0B-97E7-8BF47CB43E86}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D62A5BD0-5E4E-4B0B-97E7-8BF47CB43E86}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D62A5BD0-5E4E-4B0B-97E7-8BF47CB43E86}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D62A5BD0-5E4E-4B0B-97E7-8BF47CB43E86}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
