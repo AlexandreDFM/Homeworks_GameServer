@@ -1,0 +1,3 @@
+[submodule "@Standalones/Relay"]
+	path = @Standalones/Relay
+	url = git@github.com:AlexandreDFM/Relay.git
