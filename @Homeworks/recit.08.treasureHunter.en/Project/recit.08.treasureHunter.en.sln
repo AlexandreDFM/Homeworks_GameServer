@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "recit.08.treasureHunter.en_Server", "recit.08.treasureHunter.en_Server\recit.08.treasureHunter.en_Server.csproj", "{AEA20B82-F344-476A-BE72-9DC3BBC90FEA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "recit.08.treasureHunter.en_Client", "recit.08.treasureHunter.en_Client\recit.08.treasureHunter.en_Client.csproj", "{DCB37335-3D40-4831-B0BA-F696C2A7AC8D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AEA20B82-F344-476A-BE72-9DC3BBC90FEA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AEA20B82-F344-476A-BE72-9DC3BBC90FEA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AEA20B82-F344-476A-BE72-9DC3BBC90FEA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AEA20B82-F344-476A-BE72-9DC3BBC90FEA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DCB37335-3D40-4831-B0BA-F696C2A7AC8D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DCB37335-3D40-4831-B0BA-F696C2A7AC8D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DCB37335-3D40-4831-B0BA-F696C2A7AC8D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DCB37335-3D40-4831-B0BA-F696C2A7AC8D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
