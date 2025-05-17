@@ -1,0 +1,46 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "recit.09.secureServer.en.docx_Server", "recit.09.secureServer.en.docx_Server\recit.09.secureServer.en.docx_Server.csproj", "{05597052-6943-45A5-88EC-F817289E79E6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "recit.09.secureServer.en.docx_Client", "recit.09.secureServer.en.docx_Client\recit.09.secureServer.en.docx_Client.csproj", "{9C7CD158-573B-4E22-98F1-7903DD1160AB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "recit.09.secureServer.en.docx_Server_step3", "recit.09.secureServer.en.docx_Server_step3\recit.09.secureServer.en.docx_Server_step3.csproj", "{E773FD46-FA7C-4D92-BBC9-5157B5EEA41D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "recit.09.secureServer.en.docx_Client_step3", "recit.09.secureServer.en.docx_Client_step3\recit.09.secureServer.en.docx_Client_step3.csproj", "{19974A48-6A16-48AF-A1B4-5F9F7EFB7823}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "recit.09.secureServer.en.docx_Server_step4", "recit.09.secureServer.en.docx_Server_step4\recit.09.secureServer.en.docx_Server_step4.csproj", "{A7FD2277-DD93-4806-A0FE-220B8A460E53}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "recit.09.secureServer.en.docx_Client_step4", "recit.09.secureServer.en.docx_Client_step4\recit.09.secureServer.en.docx_Client_step4.csproj", "{3849EAEB-A1A6-4D1E-A791-33AE449B878F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{05597052-6943-45A5-88EC-F817289E79E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{05597052-6943-45A5-88EC-F817289E79E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{05597052-6943-45A5-88EC-F817289E79E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{05597052-6943-45A5-88EC-F817289E79E6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9C7CD158-573B-4E22-98F1-7903DD1160AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9C7CD158-573B-4E22-98F1-7903DD1160AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9C7CD158-573B-4E22-98F1-7903DD1160AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9C7CD158-573B-4E22-98F1-7903DD1160AB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E773FD46-FA7C-4D92-BBC9-5157B5EEA41D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E773FD46-FA7C-4D92-BBC9-5157B5EEA41D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E773FD46-FA7C-4D92-BBC9-5157B5EEA41D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E773FD46-FA7C-4D92-BBC9-5157B5EEA41D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{19974A48-6A16-48AF-A1B4-5F9F7EFB7823}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{19974A48-6A16-48AF-A1B4-5F9F7EFB7823}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{19974A48-6A16-48AF-A1B4-5F9F7EFB7823}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{19974A48-6A16-48AF-A1B4-5F9F7EFB7823}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A7FD2277-DD93-4806-A0FE-220B8A460E53}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A7FD2277-DD93-4806-A0FE-220B8A460E53}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A7FD2277-DD93-4806-A0FE-220B8A460E53}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A7FD2277-DD93-4806-A0FE-220B8A460E53}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3849EAEB-A1A6-4D1E-A791-33AE449B878F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3849EAEB-A1A6-4D1E-A791-33AE449B878F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3849EAEB-A1A6-4D1E-A791-33AE449B878F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3849EAEB-A1A6-4D1E-A791-33AE449B878F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
