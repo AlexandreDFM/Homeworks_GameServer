@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35327.3
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Recit_3_Multi-client_chat_program_(UDP)_Server", "Recit_3_Multi-client_chat_program_(UDP)\Recit_3_Multi-client_chat_program_(UDP)_Server.csproj", "{A0570AAD-FAE7-4DE4-BDA1-DC5AE1CD1FC1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Recit_3_Multi-client_chat_program_(UDP)_Client", "Recit_3_Multi-client_chat_program_(UDP)_Client\Recit_3_Multi-client_chat_program_(UDP)_Client.csproj", "{B46653EB-19C2-4895-9BC4-E0592C962B50}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Recit_3_Multi-client_chat_program_(UDP)_FinalSubmission_Client", "Recit_3_Multi-client_chat_program_(UDP)_FinalSubmission_Client\Recit_3_Multi-client_chat_program_(UDP)_FinalSubmission_Client.csproj", "{168F3C44-10F0-47A1-B991-C67478370F55}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Recit_3_Multi-client_chat_program_(UDP)_FinalSubmission_Server", "Recit_3_Multi-client_chat_program_(UDP)_FinalSubmission_Server\Recit_3_Multi-client_chat_program_(UDP)_FinalSubmission_Server.csproj", "{D71003EC-60FA-4227-BDE6-971A45395466}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A0570AAD-FAE7-4DE4-BDA1-DC5AE1CD1FC1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0570AAD-FAE7-4DE4-BDA1-DC5AE1CD1FC1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0570AAD-FAE7-4DE4-BDA1-DC5AE1CD1FC1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0570AAD-FAE7-4DE4-BDA1-DC5AE1CD1FC1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B46653EB-19C2-4895-9BC4-E0592C962B50}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B46653EB-19C2-4895-9BC4-E0592C962B50}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B46653EB-19C2-4895-9BC4-E0592C962B50}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B46653EB-19C2-4895-9BC4-E0592C962B50}.Release|Any CPU.Build.0 = Release|Any CPU
+		{168F3C44-10F0-47A1-B991-C67478370F55}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{168F3C44-10F0-47A1-B991-C67478370F55}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{168F3C44-10F0-47A1-B991-C67478370F55}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{168F3C44-10F0-47A1-B991-C67478370F55}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D71003EC-60FA-4227-BDE6-971A45395466}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D71003EC-60FA-4227-BDE6-971A45395466}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D71003EC-60FA-4227-BDE6-971A45395466}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D71003EC-60FA-4227-BDE6-971A45395466}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D25B23D4-2BF9-49B3-A0B8-9649FA7017AF}
+	EndGlobalSection
+EndGlobal
